@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kundenliste — ARA 8 Webagentur</title>
+<style>
+:root{--paper:#f6f5f2;--surface:#fff;--surface-2:#fbfaf8;--ink:#14181f;--ink-2:#454e5c;--ink-3:#5f6875;--line:#e6e3dd;--line-2:#efede9;--navy:#141b2d;--navy-2:#243350;--gold:#a8813a;--gold-ink:#7a5c1e;--gold-soft:#f6f0e2;--danger:#b42318;--danger-ink:#912018;--danger-bg:#fdf3f2;--danger-line:#f4cfcb;--ok:#2f7d4f;--ok-bg:#eef7f1;--ok-line:#cfe7d8;--shadow:0 1px 2px rgba(20,27,45,.05),0 12px 32px -12px rgba(20,27,45,.16);--radius:14px;--serif:"Iowan Old Style",Palatino,Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:20px 15px 140px;-webkit-font-smoothing:antialiased}
+.page{max-width:980px;margin:0 auto}
+header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:var(--radius) var(--radius) 0 0;padding:26px 24px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 22%,var(--gold) 78%,transparent)}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.mark{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-family:var(--serif);font-weight:700}
+.brand-name{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8)}
+h1{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:6px}
+.sub{font-size:13px;color:rgba(255,255,255,.75)}
+.stats{display:flex;background:var(--surface);border:1px solid var(--line);border-top:none;flex-wrap:wrap}
+.stat{flex:1 1 120px;padding:12px 18px;border-right:1px solid var(--line-2)}
+.stat:last-child{border-right:none}
+.stat-l{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3)}
+.stat-v{font-family:var(--serif);font-size:22px}
+.toolbar{background:var(--surface-2);border:1px solid var(--line);border-top:none;padding:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{flex:1 1 200px}
+.search input{width:100%;padding:8px 12px;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;outline:none}
+.chips{display:flex;gap:4px;background:#eae7e1;padding:3px;border-radius:8px}
+.chip{border:0;background:transparent;font:inherit;font-size:12px;font-weight:600;padding:5px 10px;border-radius:6px;cursor:pointer}
+.chip[aria-selected="true"]{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.table-wrap{background:var(--surface);border:1px solid var(--line);border-top:none;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+thead th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:10px 16px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+tbody td{padding:12px 16px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+tbody tr.row:hover{background:#f8f7f5}
+tr.off{background:var(--danger-bg)!important}
+tr.off .c-name{color:var(--danger-ink);text-decoration:line-through}
+.badge{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:12px;padding:2px 6px;margin-left:6px;vertical-align:middle}
+.b-added{color:var(--ok);background:var(--ok-bg);border:1px solid var(--ok-line)}
+.b-off{color:var(--danger);background:#fff;border:1px solid var(--danger-line);display:none}
+tr.off .b-off{display:inline-block}
+.act{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink-3);cursor:pointer;display:inline-grid;place-items:center}
+.act:hover{border-color:var(--danger-line);color:var(--danger);background:var(--danger-bg)}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:center}
+.bar-in{width:100%;max-width:980px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.saved{font-size:12px;color:var(--ink-3);margin-right:auto;display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.btn{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink-2)}
+.btn-primary{background:var(--navy);border-color:var(--navy);color:#fff}
+.toast{position:fixed;left:50%;bottom:80px;transform:translate(-50%,10px);z-index:30;background:var(--navy);color:#fff;font-size:13px;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:all .2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="brand"><div class="mark">A8</div><div class="brand-name">ARA 8 · Webagentur</div></div>
+    <h1>Kundenliste SEO (Live)</h1>
+    <p class="sub">Синхронизируемый список клиентов в реальном времени</p>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-l">Gesamt</div><div class="stat-v" id="sTotal">0</div></div>
+    <div class="stat"><div class="stat-l">Aktiv</div><div class="stat-v" id="sOn">0</div></div>
+    <div class="stat"><div class="stat-l">Gestrichen</div><div class="stat-v" id="sOff">0</div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="search"><input type="text" id="q" placeholder="Поиск клиента..."></div>
+    <div class="chips">
+      <button class="chip" data-f="all" aria-selected="true">Все</button>
+      <button class="chip" data-f="on">Активные</button>
+      <button class="chip" data-f="off">Отключенные</button>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Nr.</th><th>Kunde</th><th>Website</th><th>Действие</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<div class="bar"><div class="bar-in">
+  <div class="saved"><span class="dot" id="dot"></span><span id="savedTxt">Загрузка данных...</span></div>
+  <button class="btn btn-primary" id="save">Сохранить изменения в базу</button>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+// --- КОНФИГУРАЦИЯ JSONBIN (ВСТАВЬТЕ ВАШИ КЛЮЧИ СЮДА) ---
+var BIN_ID = "6a957c97da38895dfe264d7f"; 
+var MASTER_KEY = "$2a$10$UdfqdVnuYUdUZvpSf8lFrultY57Z.ApGMrjUSBsI7t4.Xzx.CBPpC"; 
+// -----------------------------------------------------
+
+var CLIENTS = [
+  ["Abbruchfuchs","abbruchfuchs.ch","https://abbruchfuchs.ch"],
+  ["Ararat Umzüge","ararat.ch","https://ararat.ch"],
+  ["Asbestfuchs","asbestfuchs.ch","https://asbestfuchs.ch"],
+  ["Auto Ankauf Franken","autoankauffranken.de","https://autoankauffranken.de"],
+  ["Auto Export Müller","auto-export-mueller.de","https://auto-export-mueller.de"],
+  ["Autohaus Toepner","autohaus-toepner.de","https://autohaus-toepner.de"],
+  ["Di Marrazzo","dimarrazzo.com","https://dimarrazzo.com"],
+  ["Express Umzug (Schweiz)","expressumzug.ch","https://expressumzug.ch"],
+  ["Trust Umzüge","trustumzug.de","https://trustumzug.de"],
+  ["Züri Umzug 24","zueriumzug24.ch","https://zueriumzug24.ch"]
+];
+
+var state = { marks:{}, added:[] };
+var filter = "all", query = "";
+
+function $(id){ return document.getElementById(id); }
+
+function loadFromCloud(){
+  setSaved("Загрузка данных...", "var(--gold)");
+  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', {
+    headers: { 'X-Master-Key': MASTER_KEY }
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.record){
+      state.marks = data.record.marks || {};
+      state.added = data.record.added || [];
+    }
+    setSaved("Данные синхронизированы", "var(--ok)");
+    render();
+  })
+  .catch(err => {
+    setSaved("Ошибка загрузки", "var(--danger)");
+    toast("Не удалось загрузить данные из базы");
+  });
+}
+
+function saveToCloud(){
+  setSaved("Сохранение...", "var(--gold)");
+  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Master-Key': MASTER_KEY
+    },
+    body: JSON.stringify(state)
+  })
+  .then(res => res.json())
+  .then(data => {
+    setSaved("Сохранено для всех пользователей!", "var(--ok)");
+    toast("Изменения успешно отправлены в облако!");
+  })
+  .catch(err => {
+    setSaved("Ошибка сохранения", "var(--danger)");
+    toast("Ошибка при сохранении");
+  });
+}
+
+function allRows(){
+  var out = [];
+  for(var i=0; i<CLIENTS.length; i++){
+    out.push({ id: CLIENTS[i][1], name: CLIENTS[i][0], domain: CLIENTS[i][1], url: CLIENTS[i][2] });
+  }
+  return out;
+}
+
+function render(){
+  var tb = $("tbody"); tb.textContent = "";
+  var rows = allRows(), shown = 0, offCnt = 0;
+  var q = query.toLowerCase();
+
+  for(var i=0; i<rows.length; i++){
+    var r = rows[i];
+    var isOff = state.marks[r.id] && state.marks[r.id].off;
+    if(isOff) offCnt++;
+
+    if(filter === "on" && isOff) continue;
+    if(filter === "off" && !isOff) continue;
+    if(q && r.name.toLowerCase().indexOf(q)<0 && r.domain.toLowerCase().indexOf(q)<0) continue;
+
+    var tr = document.createElement("tr");
+    tr.className = isOff ? "row off" : "row";
+
+    tr.innerHTML = `
+      <td>${i+1}</td>
+      <td><span class="c-name">${r.name}</span><span class="badge b-off">неактивен</span></td>
+      <td><a href="${r.url}" target="_blank">${r.domain}</a></td>
+      <td>
+        <button class="act" data-act="${r.id}">${isOff ? '↩' : '✕'}</button>
+      </td>
+    `;
+    tb.appendChild(tr);
+  }
+
+  $("sTotal").textContent = rows.length;
+  $("sOff").textContent = offCnt;
+  $("sOn").textContent = rows.length - offCnt;
+}
+
+$("tbody").addEventListener("click", function(e){
+  var btn = e.target.closest("[data-act]");
+  if(!btn) return;
+  var id = btn.getAttribute("data-act");
+  if(!state.marks[id]) state.marks[id] = { off: false };
+  state.marks[id].off = !state.marks[id].off;
+  render();
+});
+
+$("q").addEventListener("input", function(e){ query = e.target.value; render(); });
+$("save").addEventListener("click", saveToCloud);
+
+function setSaved(txt, color){
+  $("savedTxt").textContent = txt;
+  $("dot").style.background = color;
+}
+
+function toast(msg){
+  var t = $("toast"); t.textContent = msg; t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3000);
+}
+
+loadFromCloud();
+})();
+</script>
+</body>
+</html>
