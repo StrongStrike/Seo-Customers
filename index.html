@@ -5,97 +5,312 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kundenliste — ARA 8 Webagentur</title>
 <style>
-:root{--paper:#f6f5f2;--surface:#fff;--surface-2:#fbfaf8;--ink:#14181f;--ink-2:#454e5c;--ink-3:#5f6875;--line:#e6e3dd;--line-2:#efede9;--navy:#141b2d;--navy-2:#243350;--gold:#a8813a;--gold-ink:#7a5c1e;--gold-soft:#f6f0e2;--danger:#b42318;--danger-ink:#912018;--danger-bg:#fdf3f2;--danger-line:#f4cfcb;--ok:#2f7d4f;--ok-bg:#eef7f1;--ok-line:#cfe7d8;--shadow:0 1px 2px rgba(20,27,45,.05),0 12px 32px -12px rgba(20,27,45,.16);--radius:14px;--serif:"Iowan Old Style",Palatino,Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+:root{
+  --paper:#f6f5f2; --surface:#fff; --surface-2:#fbfaf8;
+  --ink:#14181f; --ink-2:#454e5c; --ink-3:#5f6875; --ink-4:#8b94a3;
+  --line:#e6e3dd; --line-2:#efede9;
+  --navy:#141b2d; --navy-2:#243350;
+  --gold:#a8813a; --gold-ink:#7a5c1e; --gold-soft:#f6f0e2; --gold-line:#e6d5ab;
+  --danger:#b42318; --danger-ink:#912018; --danger-bg:#fdf3f2; --danger-line:#f4cfcb;
+  --ok:#2f7d4f; --ok-bg:#eef7f1; --ok-line:#cfe7d8;
+  --warn-ink:#92400e; --warn-bg:#fffbeb; --warn-line:#fde68a;
+  --shadow:0 1px 2px rgba(20,27,45,.05), 0 12px 32px -12px rgba(20,27,45,.16);
+  --radius:14px;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;padding:20px 15px 140px;-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;
+  padding:40px 20px 150px;-webkit-font-smoothing:antialiased}
 .page{max-width:980px;margin:0 auto}
-header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;border-radius:var(--radius) var(--radius) 0 0;padding:26px 24px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;background:linear-gradient(90deg,transparent,var(--gold) 22%,var(--gold) 78%,transparent)}
-.brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.mark{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);font-family:var(--serif);font-weight:700}
-.brand-name{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.8)}
-h1{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:6px}
-.sub{font-size:13px;color:rgba(255,255,255,.75)}
-.stats{display:flex;background:var(--surface);border:1px solid var(--line);border-top:none;flex-wrap:wrap}
-.stat{flex:1 1 120px;padding:12px 18px;border-right:1px solid var(--line-2)}
+
+/* ---------- Header ---------- */
+header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 100%);
+  color:#fff;border-radius:var(--radius) var(--radius) 0 0;padding:34px 40px 30px;position:relative;overflow:hidden}
+header::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold) 22%,var(--gold) 78%,transparent)}
+.brand{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.mark{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);
+  font-family:var(--serif);font-size:16px;letter-spacing:.5px;color:#fff}
+.brand-name{font-size:11.5px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:rgba(255,255,255,.78)}
+h1{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.4px;line-height:1.15;margin-bottom:9px}
+.sub{font-size:14px;color:rgba(255,255,255,.75);max-width:640px}
+
+/* ---------- Instruction ---------- */
+.howto{background:var(--gold-soft);border-left:3px solid var(--gold);
+  padding:15px 22px;font-size:13.5px;color:#54431d;display:flex;gap:11px;align-items:flex-start}
+.howto b{color:#3b2f13}
+.howto svg{flex:none;width:16px;height:16px;margin-top:2px;stroke:var(--gold-ink);fill:none;stroke-width:1.8}
+.howto ol{margin:6px 0 0 18px;padding:0}
+.howto li{margin-bottom:3px}
+
+/* ---------- Stats ---------- */
+.stats{display:flex;background:var(--surface);border-left:1px solid var(--line);border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);flex-wrap:wrap}
+.stat{flex:1 1 140px;padding:15px 22px;border-right:1px solid var(--line-2);border-bottom:1px solid transparent}
 .stat:last-child{border-right:none}
-.stat-l{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3)}
-.stat-v{font-family:var(--serif);font-size:22px}
-.toolbar{background:var(--surface-2);border:1px solid var(--line);border-top:none;padding:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.search{flex:1 1 200px}
-.search input{width:100%;padding:8px 12px;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:8px;outline:none}
-.chips{display:flex;gap:4px;background:#eae7e1;padding:3px;border-radius:8px}
-.chip{border:0;background:transparent;font:inherit;font-size:12px;font-weight:600;padding:5px 10px;border-radius:6px;cursor:pointer}
-.chip[aria-selected="true"]{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.1)}
-.table-wrap{background:var(--surface);border:1px solid var(--line);border-top:none;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);overflow-x:auto}
+.stat-l{font-size:10.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--ink-3);margin-bottom:2px}
+.stat-v{font-family:var(--serif);font-size:26px;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat.is-off .stat-v{color:var(--danger)}
+.stat.is-on .stat-v{color:var(--ok)}
+.stat.is-new .stat-v{color:var(--gold-ink)}
+
+/* ---------- Toolbar ---------- */
+.toolbar{background:var(--surface-2);border-left:1px solid var(--line);border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:13px 22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{position:relative;flex:1 1 210px;min-width:180px}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;
+  stroke:var(--ink-3);fill:none;stroke-width:2;pointer-events:none}
+.search input{width:100%;padding:9px 13px 9px 35px;font:inherit;font-size:14px;color:var(--ink);
+  background:#fff;border:1px solid var(--line);border-radius:9px;outline:none;transition:border-color .15s,box-shadow .15s}
+.search input:focus{border-color:var(--navy-2);box-shadow:0 0 0 3px rgba(36,51,80,.13)}
+.chips{display:flex;gap:4px;background:#eae7e1;padding:3px;border-radius:9px;flex-wrap:wrap}
+.chip{border:0;background:transparent;font:inherit;font-size:13px;font-weight:600;color:var(--ink-2);
+  padding:6px 12px;border-radius:7px;cursor:pointer;transition:background .15s,color .15s}
+.chip[aria-selected="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(20,27,45,.14)}
+.chip:hover:not([aria-selected="true"]){color:var(--ink)}
+.add-btn{font:inherit;font-size:13.5px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;
+  border:1px dashed var(--navy-2);background:#fff;color:var(--navy-2);display:flex;align-items:center;gap:7px;
+  transition:all .14s;white-space:nowrap}
+.add-btn:hover{background:var(--navy);border-color:var(--navy);border-style:solid;color:#fff}
+.add-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round}
+
+/* ---------- Add form ---------- */
+.addform{display:none;background:#fff;border-left:1px solid var(--line);border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);padding:18px 22px;box-shadow:inset 0 3px 0 var(--navy-2)}
+.addform.open{display:block}
+.addform h2{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:3px}
+.addform p.hint{font-size:12.5px;color:var(--ink-3);margin-bottom:14px}
+.fields{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:5px;flex:1 1 210px}
+.field label{font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3)}
+.field input{padding:9px 12px;font:inherit;font-size:14px;color:var(--ink);background:#fff;
+  border:1px solid var(--line);border-radius:9px;outline:none;transition:border-color .15s,box-shadow .15s}
+.field input:focus{border-color:var(--navy-2);box-shadow:0 0 0 3px rgba(36,51,80,.13)}
+.field input.bad{border-color:var(--danger);box-shadow:0 0 0 3px rgba(180,35,24,.12)}
+.addform .err{display:none;margin-top:11px;font-size:13px;color:var(--danger-ink);
+  background:var(--danger-bg);border:1px solid var(--danger-line);border-radius:8px;padding:9px 12px}
+.addform .err.show{display:block}
+.addform .row-btns{display:flex;gap:9px;flex:0 0 auto}
+
+/* ---------- Table ---------- */
+.table-wrap{background:var(--surface);border:1px solid var(--line);border-top:none;
+  border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);overflow:hidden}
 table{width:100%;border-collapse:collapse}
-thead th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:10px 16px;background:var(--surface-2);border-bottom:1px solid var(--line)}
-tbody td{padding:12px 16px;border-bottom:1px solid var(--line-2);vertical-align:middle}
-tbody tr.row:hover{background:#f8f7f5}
-tr.off{background:var(--danger-bg)!important}
-tr.off .c-name{color:var(--danger-ink);text-decoration:line-through}
-.badge{font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;border-radius:12px;padding:2px 6px;margin-left:6px;vertical-align:middle}
+thead th{font-size:10.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--ink-3);
+  text-align:left;padding:12px 20px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+th.c-nr{width:50px;text-align:right}
+th.c-act{width:120px;text-align:center}
+tbody td{padding:0 20px;border-bottom:1px solid var(--line-2);vertical-align:middle;height:56px}
+tbody tr.row{transition:background .12s}
+tbody tr.row:hover{background:#f4f2ee}
+td.c-nr{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:13px}
+.c-name{font-weight:600;font-size:15px}
+.c-site a{color:var(--navy-2);text-decoration:none;font-size:14px;border-bottom:1px solid rgba(36,51,80,.25);
+  padding-bottom:1px;transition:border-color .15s,color .15s}
+.c-site a:hover{color:var(--gold-ink);border-bottom-color:var(--gold-ink)}
+.c-site .nolink{color:var(--ink-3);font-size:13.5px;font-style:italic}
+td.c-act{text-align:center}
+
+/* badges */
+.badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
+  border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle;white-space:nowrap}
+.b-off{display:none;color:var(--danger);background:#fff;border:1px solid var(--danger-line)}
 .b-added{color:var(--ok);background:var(--ok-bg);border:1px solid var(--ok-line)}
-.b-off{color:var(--danger);background:#fff;border:1px solid var(--danger-line);display:none}
 tr.off .b-off{display:inline-block}
-.act{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink-3);cursor:pointer;display:inline-grid;place-items:center}
+
+/* row states */
+tr.off{background:var(--danger-bg)!important}
+tr.off td:first-child{position:relative}
+tr.off td:first-child::before{content:"";position:absolute;left:0;top:0;bottom:-1px;width:3px;background:var(--danger)}
+tr.off .c-name{color:var(--danger-ink);text-decoration:line-through;text-decoration-thickness:1.5px}
+tr.off .c-site a,tr.off .c-site .nolink{color:var(--danger-ink);text-decoration:line-through;
+  text-decoration-thickness:1.5px;border-bottom-color:transparent;opacity:.8}
+tr.off td.c-nr{color:var(--danger)}
+tr.off .b-added{opacity:.5}
+
+/* action buttons */
+.act{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:#fff;
+  color:var(--ink-3);cursor:pointer;display:inline-grid;place-items:center;transition:all .14s;vertical-align:middle}
+.act svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .act:hover{border-color:var(--danger-line);color:var(--danger);background:var(--danger-bg)}
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 16px;display:flex;justify-content:center}
-.bar-in{width:100%;max-width:980px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.saved{font-size:12px;color:var(--ink-3);margin-right:auto;display:flex;align-items:center;gap:6px}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--ok)}
-.btn{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink-2)}
-.btn-primary{background:var(--navy);border-color:var(--navy);color:#fff}
-.toast{position:fixed;left:50%;bottom:80px;transform:translate(-50%,10px);z-index:30;background:var(--navy);color:#fff;font-size:13px;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:all .2s}
+.act:focus-visible{outline:2px solid var(--navy-2);outline-offset:2px}
+tr.off .act{border-color:var(--danger-line);color:var(--danger);background:#fff}
+tr.off .act:hover{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}
+.act-del{margin-left:6px;border-style:dashed}
+.act-del:hover{border-style:solid}
+
+/* note row */
+tr.note-row td{padding:0 20px 12px;height:auto;border-bottom:1px solid var(--line-2);
+  background:var(--danger-bg);position:relative}
+tr.note-row td::before{content:"";position:absolute;left:0;top:0;bottom:-1px;width:3px;background:var(--danger)}
+.note{width:100%;padding:8px 11px;font:inherit;font-size:13px;
+  color:var(--danger-ink);background:#fff;border:1px solid var(--danger-line);border-radius:8px;outline:none}
+.note::placeholder{color:#9a615a}
+.note:focus{border-color:var(--danger);box-shadow:0 0 0 3px rgba(180,35,24,.18)}
+
+.empty{display:none;padding:52px 20px;text-align:center;color:var(--ink-3);font-size:14px}
+
+/* ---------- Sign-off ---------- */
+.signoff{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 22px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;box-shadow:var(--shadow)}
+.signoff .field{flex:1 1 230px}
+.signoff .who{font-size:12.5px;color:var(--ink-3);flex:1 1 100%}
+
+/* ---------- Action bar ---------- */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);
+  padding:12px 20px;display:flex;justify-content:center}
+.bar-in{width:100%;max-width:980px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.saved{font-size:12.5px;color:var(--ink-3);margin-right:auto;display:flex;align-items:center;gap:7px;min-width:180px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
+.btn{font:inherit;font-size:13.5px;font-weight:600;padding:10px 16px;border-radius:9px;cursor:pointer;
+  border:1px solid var(--line);background:#fff;color:var(--ink-2);transition:all .14s;white-space:nowrap}
+.btn:hover{border-color:var(--ink-3);color:var(--ink)}
+.btn-primary{background:var(--navy);border-color:var(--navy);color:#fff;padding:10px 22px}
+.btn-primary:hover{background:var(--navy-2);border-color:var(--navy-2);color:#fff}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--ink-3)}
+.btn-ghost:hover{color:var(--danger);border-color:var(--danger-line);background:var(--danger-bg)}
+
+.toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,14px);z-index:30;max-width:min(92vw,540px);
+  background:var(--navy);color:#fff;font-size:13.5px;padding:12px 20px;border-radius:10px;text-align:center;
+  box-shadow:0 10px 30px -8px rgba(20,27,45,.5);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-height:1.7}
+
+@media (max-width:700px){
+  body{padding:14px 8px 180px}
+  header{padding:26px 20px 22px}
+  h1{font-size:26px}
+  thead th,tbody td{padding-left:12px;padding-right:12px}
+  th.c-act{width:72px;white-space:normal}
+  .c-site,th.c-site-h{display:none}
+  .saved{width:100%;min-width:0;margin-bottom:2px}
+  .bar-in .btn{flex:1 1 auto;text-align:center}
+}
 </style>
 </head>
 <body>
 <div class="page">
+
   <header>
-    <div class="brand"><div class="mark">A8</div><div class="brand-name">ARA 8 · Webagentur</div></div>
-    <h1>Kundenliste SEO (Live)</h1>
-    <p class="sub">Синхронизируемый список клиентов в реальном времени</p>
+    <div class="brand">
+      <div class="mark">A8</div>
+      <div class="brand-name">ARA 8 · Webagentur</div>
+    </div>
+    <h1>SEO Kundenliste (Live Synchronisiert)</h1>
+    <p class="sub">Dynamische Echtzeit-Übersicht aller SEO-Kunden für das gesamte Team.</p>
   </header>
 
+  <div class="howto">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.2M12 7.4v.5"/></svg>
+    <div>
+      <b>So funktioniert die Live-Synchronisation:</b>
+      <ol>
+        <li>Kunden, die <b>inaktiv</b> sind, rechts mit dem ✕ markieren (Zeile wird rot). Optional Notiz hinzufügen.</li>
+        <li>Fehlende Kunden oben über <b>„Kunde hinzufügen“</b> eintragen.</li>
+        <li>Klicken Sie unten auf <b>„Änderungen speichern“</b>, um die Daten direkt für das gesamte Team zu aktualisieren.</li>
+      </ol>
+    </div>
+  </div>
+
   <div class="stats">
-    <div class="stat"><div class="stat-l">Gesamt</div><div class="stat-v" id="sTotal">0</div></div>
-    <div class="stat"><div class="stat-l">Aktiv</div><div class="stat-v" id="sOn">0</div></div>
-    <div class="stat"><div class="stat-l">Gestrichen</div><div class="stat-v" id="sOff">0</div></div>
+    <div class="stat"><div class="stat-l">Kunden gesamt</div><div class="stat-v" id="sTotal">0</div></div>
+    <div class="stat is-on"><div class="stat-l">Aktiv</div><div class="stat-v" id="sOn">0</div></div>
+    <div class="stat is-off"><div class="stat-l">Gestrichen</div><div class="stat-v" id="sOff">0</div></div>
+    <div class="stat is-new"><div class="stat-l">Hinzugefügt</div><div class="stat-v" id="sAdd">0</div></div>
   </div>
 
   <div class="toolbar">
-    <div class="search"><input type="text" id="q" placeholder="Поиск клиента..."></div>
-    <div class="chips">
-      <button class="chip" data-f="all" aria-selected="true">Все</button>
-      <button class="chip" data-f="on">Активные</button>
-      <button class="chip" data-f="off">Отключенные</button>
+    <div class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+      <input type="text" id="q" placeholder="Kunde oder Website suchen …" autocomplete="off" spellcheck="false" aria-label="Kunde oder Website suchen">
     </div>
+    <div class="chips" role="tablist" aria-label="Filter">
+      <button class="chip" type="button" role="tab" data-f="all" aria-selected="true">Alle</button>
+      <button class="chip" type="button" role="tab" data-f="on" aria-selected="false">Aktiv</button>
+      <button class="chip" type="button" role="tab" data-f="off" aria-selected="false">Gestrichen</button>
+      <button class="chip" type="button" role="tab" data-f="added" aria-selected="false">Ergänzt</button>
+    </div>
+    <button class="add-btn" type="button" id="addToggle" aria-expanded="false" aria-controls="addform">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Kunde hinzufügen
+    </button>
+  </div>
+
+  <div class="addform" id="addform">
+    <h2>Neuen Kunden eintragen</h2>
+    <p class="hint">Der Name ist ein Pflichtfeld. Die Website erleichtert die Zuordnung.</p>
+    <div class="fields">
+      <div class="field" style="flex:1 1 240px">
+        <label for="nName">Kunde / Firma</label>
+        <input type="text" id="nName" maxlength="80" placeholder="z. B. Muster Umzüge GmbH" autocomplete="off">
+      </div>
+      <div class="field" style="flex:1 1 220px">
+        <label for="nSite">Website (optional)</label>
+        <input type="text" id="nSite" maxlength="120" placeholder="z. B. muster-umzuege.de" autocomplete="off" spellcheck="false">
+      </div>
+      <div class="field" style="flex:1 1 200px">
+        <label for="nNote">Notiz (optional)</label>
+        <input type="text" id="nNote" maxlength="200" placeholder="z. B. seit 08/2026 dabei" autocomplete="off">
+      </div>
+      <div class="row-btns">
+        <button class="btn" type="button" id="addCancel">Abbrechen</button>
+        <button class="btn btn-primary" type="button" id="addSave">Hinzufügen</button>
+      </div>
+    </div>
+    <div class="err" id="addErr" role="alert"></div>
   </div>
 
   <div class="table-wrap">
     <table>
-      <thead><tr><th>Nr.</th><th>Kunde</th><th>Website</th><th>Действие</th></tr></thead>
+      <thead><tr>
+        <th class="c-nr">Nr.</th>
+        <th>Kunde</th>
+        <th class="c-site-h">Website</th>
+        <th class="c-act">Status</th>
+      </tr></thead>
       <tbody id="tbody"></tbody>
     </table>
+    <div class="empty" id="empty">Keine Einträge in dieser Ansicht vorhanden.</div>
   </div>
+
+  <div class="signoff">
+    <div class="field">
+      <label for="revName">Geprüft von</label>
+      <input type="text" id="revName" maxlength="60" placeholder="Ihr Name" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="revDate">Geprüft am</label>
+      <input type="text" id="revDate" maxlength="20" placeholder="TT.MM.JJJJ" autocomplete="off">
+    </div>
+    <div class="who" id="whoLine"></div>
+  </div>
+
+  <footer>
+    ARA 8 Webagentur · Live-Datenbank für SEO-Kunden<br>
+    Alle Änderungen werden zentral für das gesamte Team synchronisiert.
+  </footer>
 </div>
 
 <div class="bar"><div class="bar-in">
-  <div class="saved"><span class="dot" id="dot"></span><span id="savedTxt">Загрузка данных...</span></div>
-  <button class="btn btn-primary" id="save">Сохранить изменения в базу</button>
+  <div class="saved"><span class="dot" id="dot"></span><span id="savedTxt">Verbindung wird aufgebaut...</span></div>
+  <button class="btn btn-ghost" type="button" id="reset">Zurücksetzen</button>
+  <button class="btn" type="button" id="print">Drucken / PDF</button>
+  <button class="btn" type="button" id="copy">Bericht kopieren</button>
+  <button class="btn btn-primary" type="button" id="save">Änderungen speichern</button>
 </div></div>
-
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function(){
 "use strict";
 
-// --- КОНФИГУРАЦИЯ JSONBIN (ВСТАВЬТЕ ВАШИ КЛЮЧИ СЮДА) ---
-var BIN_ID = "6a957c97da38895dfe264d7f"; 
+// --- JSONBIN DYNAMISCHE DATENBANK CONFIG ---
+var BIN_ID = "66a957c97da38895dfe264d7f"; 
 var MASTER_KEY = "$2a$10$UdfqdVnuYUdUZvpSf8lFrultY57Z.ApGMrjUSBsI7t4.Xzx.CBPpC"; 
-// -----------------------------------------------------
+// ------------------------------------------
 
 var CLIENTS = [
   ["Abbruchfuchs","abbruchfuchs.ch","https://abbruchfuchs.ch"],
@@ -103,20 +318,62 @@ var CLIENTS = [
   ["Asbestfuchs","asbestfuchs.ch","https://asbestfuchs.ch"],
   ["Auto Ankauf Franken","autoankauffranken.de","https://autoankauffranken.de"],
   ["Auto Export Müller","auto-export-mueller.de","https://auto-export-mueller.de"],
+  ["Auto Kesslinger","auto-kesslinger.de","https://auto-kesslinger.de"],
+  ["Autodandler","autodandler.de","https://autodandler.de"],
+  ["Autogutachter","autogutachter.de","https://autogutachter.de"],
   ["Autohaus Toepner","autohaus-toepner.de","https://autohaus-toepner.de"],
+  ["Brockenhaus Schatzkisten","brockenhaus-schatzkiste.ch","https://brockenhaus-schatzkiste.ch"],
+  ["Burger Buben Puchheim","puchheim.burger-buben.de","https://puchheim.burger-buben.de"],
+  ["Courierheld","courierheld.de","https://courierheld.de"],
+  ["Cybersnap","cybersnap.de","https://cybersnap.de"],
   ["Di Marrazzo","dimarrazzo.com","https://dimarrazzo.com"],
+  ["Entrümpelung Next","entruempelung-next.de","https://entruempelung-next.de"],
+  ["Express Reinigungsservice","express-reinigungsservice.de","https://express-reinigungsservice.de"],
   ["Express Umzug (Schweiz)","expressumzug.ch","https://expressumzug.ch"],
+  ["Express Umzugsservice","express-umzugsservice.de","https://express-umzugsservice.de"],
+  ["Gebäudereinigung Bayern Süd","gebaeudereinigungbayern-sued.de","https://gebaeudereinigungbayern-sued.de"],
+  ["Good Fruit","good-fruit.de","https://good-fruit.de"],
+  ["Gut8er München","gut8ermuenchen.de","https://gut8ermuenchen.de"],
+  ["Hadithwissenschaften","hadithwissenschaften.de","https://hadithwissenschaften.de"],
+  ["Home2Home","home2home-umzug.de","https://home2home-umzug.de"],
+  ["Kaufes","kaufes.ch","https://kaufes.ch"],
+  ["Malerfuchs","malerfuchs.ch","https://malerfuchs.ch"],
+  ["OS Security","ossecurity.de","https://ossecurity.de"],
+  ["Otaku Schlüsseldienst","otaku-schluesseldienst.de","https://otaku-schluesseldienst.de"],
+  ["PJ Medical Cosmetics","pj-medical-cosmetics.de","https://pj-medical-cosmetics.de"],
+  ["Park4Fly","park4fly.net","https://park4fly.net"],
+  ["Phone Vision","phone-vision.de","https://phone-vision.de"],
+  ["R & E Malerbetrieb Starnberg","starnberg-malerbetrieb.de","https://starnberg-malerbetrieb.de"],
+  ["Räumungsfuchs","raeumungsfuchs.ch","https://raeumungsfuchs.ch"],
+  ["Reinigung MUC","reinigung-muc.de","https://reinigung-muc.de"],
+  ["Reinigungsfuchs","reinigungsfuchs.ch","https://reinigungsfuchs.ch"],
+  ["SOS Schlüsseldienst","sosschluesseldienst.de","https://sosschluesseldienst.de"],
+  ["Schlüsseldienst Prime","schluesseldienst-prime.de","https://schluesseldienst-prime.de"],
+  ["Smile Umzug","smileumzug.ch","https://smileumzug.ch"],
+  ["Steus Logistik","steuslogistik.de","https://steuslogistik.de"],
   ["Trust Umzüge","trustumzug.de","https://trustumzug.de"],
-  ["Züri Umzug 24","zueriumzug24.ch","https://zueriumzug24.ch"]
+  ["Umzug nach","umzugnach.de","https://umzugnach.de"],
+  ["Umzugsfuchs","umzugsfuchs.ch","https://umzugsfuchs.ch"],
+  ["Vikings Logistics","vikings-logistics.com","https://vikings-logistics.com"],
+  ["World of Peace","world-of-peace.de","https://world-of-peace.de"],
+  ["Zahnarzt am Nordbad","zahnarzt-am-nordbad.de","https://zahnarzt-am-nordbad.de"],
+  ["Zahnärzte in Schwabing","zahnaerzte-am-josephsplatz.de","https://zahnaerzte-am-josephsplatz.de"],
+  ["ZickZack Umzüge / Alissa Service","zickzack-umzuege.de","https://zickzack-umzuege.de"],
+  ["Züri Umzug 24","zueriumzug24.ch","https://zueriumzug24.ch"],
+  ["Zulassungscenter Muc","zulassungscenter-muc.de","https://zulassungscenter-muc.de"]
 ];
 
-var state = { marks:{}, added:[] };
-var filter = "all", query = "";
+var ICON_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+var ICON_UNDO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.8-6.3"/><path d="M3 4.2v5h5"/></svg>';
+var ICON_TRASH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16M9.5 6.5V4.6h5v1.9M6.5 6.5l.9 13h9.2l.9-13"/></svg>';
 
 function $(id){ return document.getElementById(id); }
 
+var state = { marks:{}, added:[], reviewer:"", reviewDate:"" };
+var filter = "all", query = "", dirty = false;
+
 function loadFromCloud(){
-  setSaved("Загрузка данных...", "var(--gold)");
+  setSaved("Datenbank wird geladen...", "var(--gold)");
   fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', {
     headers: { 'X-Master-Key': MASTER_KEY }
   })
@@ -125,18 +382,23 @@ function loadFromCloud(){
     if(data.record){
       state.marks = data.record.marks || {};
       state.added = data.record.added || [];
+      state.reviewer = data.record.reviewer || "";
+      state.reviewDate = data.record.reviewDate || "";
+      $("revName").value = state.reviewer;
+      $("revDate").value = state.reviewDate;
     }
-    setSaved("Данные синхронизированы", "var(--ok)");
+    dirty = false;
+    setSaved("Mit Datenbank synchronisiert", "var(--ok)");
     render();
   })
   .catch(err => {
-    setSaved("Ошибка загрузки", "var(--danger)");
-    toast("Не удалось загрузить данные из базы");
+    setSaved("Fehler beim Laden", "var(--danger)");
+    toast("Fehler beim Abrufen der Live-Daten aus der Datenbank.");
   });
 }
 
 function saveToCloud(){
-  setSaved("Сохранение...", "var(--gold)");
+  setSaved("Wird in Datenbank gespeichert...", "var(--gold)");
   fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
     method: 'PUT',
     headers: {
@@ -147,76 +409,244 @@ function saveToCloud(){
   })
   .then(res => res.json())
   .then(data => {
-    setSaved("Сохранено для всех пользователей!", "var(--ok)");
-    toast("Изменения успешно отправлены в облако!");
+    dirty = false;
+    setSaved("Erfolgreich für alle gespeichert!", "var(--ok)");
+    toast("Alle Änderungen wurden erfolgreich im Team-Netzwerk gespeichert!");
   })
   .catch(err => {
-    setSaved("Ошибка сохранения", "var(--danger)");
-    toast("Ошибка при сохранении");
+    setSaved("Speicherfehler", "var(--danger)");
+    toast("Fehler beim Speichern in der Datenbank.");
   });
 }
-
-function allRows(){
-  var out = [];
-  for(var i=0; i<CLIENTS.length; i++){
-    out.push({ id: CLIENTS[i][1], name: CLIENTS[i][0], domain: CLIENTS[i][1], url: CLIENTS[i][2] });
-  }
-  return out;
-}
-
-function render(){
-  var tb = $("tbody"); tb.textContent = "";
-  var rows = allRows(), shown = 0, offCnt = 0;
-  var q = query.toLowerCase();
-
-  for(var i=0; i<rows.length; i++){
-    var r = rows[i];
-    var isOff = state.marks[r.id] && state.marks[r.id].off;
-    if(isOff) offCnt++;
-
-    if(filter === "on" && isOff) continue;
-    if(filter === "off" && !isOff) continue;
-    if(q && r.name.toLowerCase().indexOf(q)<0 && r.domain.toLowerCase().indexOf(q)<0) continue;
-
-    var tr = document.createElement("tr");
-    tr.className = isOff ? "row off" : "row";
-
-    tr.innerHTML = `
-      <td>${i+1}</td>
-      <td><span class="c-name">${r.name}</span><span class="badge b-off">неактивен</span></td>
-      <td><a href="${r.url}" target="_blank">${r.domain}</a></td>
-      <td>
-        <button class="act" data-act="${r.id}">${isOff ? '↩' : '✕'}</button>
-      </td>
-    `;
-    tb.appendChild(tr);
-  }
-
-  $("sTotal").textContent = rows.length;
-  $("sOff").textContent = offCnt;
-  $("sOn").textContent = rows.length - offCnt;
-}
-
-$("tbody").addEventListener("click", function(e){
-  var btn = e.target.closest("[data-act]");
-  if(!btn) return;
-  var id = btn.getAttribute("data-act");
-  if(!state.marks[id]) state.marks[id] = { off: false };
-  state.marks[id].off = !state.marks[id].off;
-  render();
-});
-
-$("q").addEventListener("input", function(e){ query = e.target.value; render(); });
-$("save").addEventListener("click", saveToCloud);
 
 function setSaved(txt, color){
   $("savedTxt").textContent = txt;
   $("dot").style.background = color;
 }
 
+function allRows(){
+  var out = [];
+  for(var i = 0; i < CLIENTS.length; i++){
+    var c = CLIENTS[i];
+    out.push({ id: c[1] || slug(c[0]), name: c[0], domain: c[1], url: c[2], added: false });
+  }
+  for(var j = 0; j < state.added.length; j++){
+    var a = state.added[j];
+    out.push({ id: a.id, name: a.name, domain: a.domain || "", url: a.url || "", added: true });
+  }
+  out.sort(function(x, y){ return x.name.localeCompare(y.name, "de"); });
+  return out;
+}
+
+function slug(s){
+  return String(s).toLowerCase().replace(/[äÄ]/g,"ae").replace(/[öÖ]/g,"oe").replace(/[üÜ]/g,"ue")
+    .replace(/ß/g,"ss").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,50);
+}
+
+function normDomain(s){
+  return String(s || "").trim().toLowerCase()
+    .replace(/^https?:\/\//,"").replace(/^www\./,"").replace(/\/.*$/,"").replace(/\s+/g,"");
+}
+
+function isOff(id){ return !!(state.marks[id] && state.marks[id].off); }
+function noteOf(id){ return (state.marks[id] && state.marks[id].note) || ""; }
+
+function render(){
+  var tb = $("tbody");
+  tb.textContent = "";
+  var q = query.trim().toLowerCase(), rows = allRows(), shown = 0;
+
+  for(var i = 0; i < rows.length; i++){
+    var r = rows[i], off = isOff(r.id);
+    if(filter === "on" && off) continue;
+    if(filter === "off" && !off) continue;
+    if(filter === "added" && !r.added) continue;
+    if(q && r.name.toLowerCase().indexOf(q) < 0 && r.domain.toLowerCase().indexOf(q) < 0) continue;
+    shown++;
+
+    var tr = document.createElement("tr");
+    tr.className = off ? "row off" : "row";
+
+    var td1 = document.createElement("td");
+    td1.className = "c-nr";
+    td1.textContent = String(i + 1);
+    tr.appendChild(td1);
+
+    var td2 = document.createElement("td");
+    var nm = document.createElement("span");
+    nm.className = "c-name";
+    nm.textContent = r.name;
+    td2.appendChild(nm);
+    if(r.added) td2.appendChild(badge("b-added", "ergänzt"));
+    td2.appendChild(badge("b-off", "inaktiv"));
+    tr.appendChild(td2);
+
+    var td3 = document.createElement("td");
+    td3.className = "c-site";
+    if(r.url){
+      var a = document.createElement("a");
+      a.href = r.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      a.textContent = r.domain;
+      td3.appendChild(a);
+    }else{
+      var sp = document.createElement("span");
+      sp.className = "nolink";
+      sp.textContent = "keine Website hinterlegt";
+      td3.appendChild(sp);
+    }
+    tr.appendChild(td3);
+
+    var td4 = document.createElement("td");
+    td4.className = "c-act";
+    var btn = document.createElement("button");
+    btn.className = "act"; btn.type = "button";
+    btn.setAttribute("data-act", r.id);
+    btn.title = off ? "Wieder aktivieren" : "Als inaktiv markieren";
+    btn.innerHTML = off ? ICON_UNDO : ICON_X;
+    td4.appendChild(btn);
+    if(r.added){
+      var del = document.createElement("button");
+      del.className = "act act-del"; del.type = "button";
+      del.setAttribute("data-del", r.id);
+      del.title = "Eintrag dauerhaft löschen";
+      del.innerHTML = ICON_TRASH;
+      td4.appendChild(del);
+    }
+    tr.appendChild(td4);
+    tb.appendChild(tr);
+
+    if(off){
+      var nr = document.createElement("tr");
+      nr.className = noteOf(r.id) ? "note-row" : "note-row empty-note";
+      var ntd = document.createElement("td");
+      ntd.colSpan = 4;
+      var inp = document.createElement("input");
+      inp.className = "note"; inp.type = "text"; inp.maxLength = 200;
+      inp.placeholder = "Notiz (optional) — z. B. Vertrag gekündigt 08/2026";
+      inp.value = noteOf(r.id);
+      inp.setAttribute("data-note", r.id);
+      ntd.appendChild(inp); nr.appendChild(ntd); tb.appendChild(nr);
+    }
+  }
+
+  $("empty").style.display = shown ? "none" : "block";
+  stats();
+}
+
+function badge(cls, txt){
+  var b = document.createElement("span");
+  b.className = "badge " + cls;
+  b.textContent = txt;
+  return b;
+}
+
+function stats(){
+  var rows = allRows(), off = 0;
+  for(var i = 0; i < rows.length; i++) if(isOff(rows[i].id)) off++;
+  $("sTotal").textContent = String(rows.length);
+  $("sOff").textContent = String(off);
+  $("sOn").textContent = String(rows.length - off);
+  $("sAdd").textContent = String(state.added.length);
+  var w = "";
+  if(state.reviewer) w = "Zuletzt bearbeitet von " + state.reviewer + (state.reviewDate ? " am " + state.reviewDate : "") + ".";
+  $("whoLine").textContent = w;
+}
+
+$("tbody").addEventListener("click", function(e){
+  var t = e.target;
+  var del = t.closest ? t.closest("[data-del]") : null;
+  if(del){
+    var did = del.getAttribute("data-del");
+    if(!window.confirm("Möchten Sie diesen hinzugefügten Kunden wirklich löschen?")) return;
+    state.added = state.added.filter(function(a){ return a.id !== did; });
+    delete state.marks[did];
+    dirty = true;
+    setSaved("Ungespeicherte Änderungen", "var(--gold)");
+    render();
+    return;
+  }
+  var b = t.closest ? t.closest("[data-act]") : null;
+  if(!b) return;
+  var id = b.getAttribute("data-act");
+  if(!state.marks[id]) state.marks[id] = { off:false, note:"" };
+  state.marks[id].off = !state.marks[id].off;
+  dirty = true;
+  setSaved("Ungespeicherte Änderungen", "var(--gold)");
+  render();
+});
+
+$("tbody").addEventListener("input", function(e){
+  var t = e.target;
+  if(!t || !t.getAttribute || t.getAttribute("data-note") == null) return;
+  var id = t.getAttribute("data-note");
+  if(!state.marks[id]) state.marks[id] = { off:true, note:"" };
+  state.marks[id].note = t.value;
+  dirty = true;
+  setSaved("Ungespeicherte Änderungen", "var(--gold)");
+});
+
+function openAdd(open){
+  $("addform").className = open ? "addform open" : "addform";
+  if(open){ $("nName").focus(); }
+  else{ showErr(""); $("nName").value = ""; $("nSite").value = ""; $("nNote").value = ""; }
+}
+function showErr(msg){
+  var e = $("addErr");
+  e.textContent = msg;
+  e.className = msg ? "err show" : "err";
+}
+$("addToggle").addEventListener("click", function(){ openAdd($("addform").className.indexOf("open") < 0); });
+$("addCancel").addEventListener("click", function(){ openAdd(false); });
+$("addSave").addEventListener("click", addClient);
+
+function addClient(){
+  var name = $("nName").value.trim();
+  var dom = normDomain($("nSite").value);
+  var note = $("nNote").value.trim();
+  if(!name){ showErr("Bitte tragen Sie den Namen des Kunden ein."); return; }
+
+  var id = "neu:" + (slug(name) || Date.now());
+  state.added.push({ id:id, name:name, domain:dom, url: dom ? "https://" + dom : "", note:note });
+  if(note) state.marks[id] = { off:false, note:note };
+
+  dirty = true;
+  setSaved("Ungespeicherte Änderungen", "var(--gold)");
+  openAdd(false);
+  render();
+  toast("Kunde „" + name + "“ hinzugefügt");
+}
+
+$("revName").addEventListener("input", function(e){ state.reviewer = e.target.value.trim(); dirty = true; setSaved("Ungespeicherte Änderungen", "var(--gold)"); stats(); });
+$("revDate").addEventListener("input", function(e){ state.reviewDate = e.target.value.trim(); dirty = true; setSaved("Ungespeicherte Änderungen", "var(--gold)"); stats(); });
+
+$("q").addEventListener("input", function(e){ query = e.target.value; render(); });
+var chips = document.querySelectorAll(".chip");
+Array.prototype.forEach.call(chips, function(chip){
+  chip.addEventListener("click", function(){
+    Array.prototype.forEach.call(chips, function(c){ c.setAttribute("aria-selected", "false"); });
+    chip.setAttribute("aria-selected", "true");
+    filter = chip.getAttribute("data-f");
+    render();
+  });
+});
+
+$("reset").addEventListener("click", function(){
+  if(!window.confirm("Möchten Sie alle lokalen Markierungen wirklich zurücksetzen?")) return;
+  state.marks = {}; state.added = [];
+  dirty = true;
+  setSaved("Ungespeicherte Änderungen", "var(--gold)");
+  render();
+});
+$("print").addEventListener("click", function(){ window.print(); });
+
+$("save").addEventListener("click", saveToCloud);
+
+var toastT = null;
 function toast(msg){
-  var t = $("toast"); t.textContent = msg; t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), 3000);
+  var t = $("toast");
+  t.textContent = msg; t.classList.add("show");
+  if(toastT) clearTimeout(toastT);
+  toastT = setTimeout(function(){ t.classList.remove("show"); }, 3200);
 }
 
 loadFromCloud();
