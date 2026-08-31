@@ -237,7 +237,7 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
       <ol>
         <li>Kunden, mit denen wir <b>nicht mehr arbeiten</b>, rechts mit dem ✕ markieren — die Zeile wird rot und durchgestrichen. Auf Wunsch eine kurze Notiz ergänzen.</li>
         <li>Fehlt ein Kunde? Oben auf <b>„Kunde hinzufügen“</b> klicken und ihn eintragen.</li>
-        <li>Alle Änderungen werden **automatisch mit JSONBin.io** synchronisiert.</li>
+        <li>Alle Änderungen werden <b>automatisch mit JSONBin.io</b> synchronisiert.</li>
       </ol>
     </div>
   </div>
@@ -329,7 +329,7 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
   <button class="btn btn-ghost" type="button" id="reset">Zurücksetzen</button>
   <button class="btn" type="button" id="print">Drucken / PDF</button>
   <button class="btn" type="button" id="copy">Bericht kopieren</button>
-  <button class="btn btn-primary" type="button" id="save">Сохранить в облако</button>
+  <button class="btn btn-primary" type="button" id="save">In der Cloud speichern</button>
 </div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -411,7 +411,7 @@ function uid(){
 
 /* ---------- Cloud Methods (JSONBin.io) ---------- */
 async function loadDataFromCloud() {
-  setSaved("🔄 Облако: Загрузка...", true);
+  setSaved("🔄 Cloud: Laden...", true);
   try {
     var res = await fetch(JSONBIN_CONFIG.URL + '/' + JSONBIN_CONFIG.BIN_ID + '/latest', {
       method: 'GET',
@@ -428,19 +428,19 @@ async function loadDataFromCloud() {
       $("revName").value = state.reviewer || "";
       $("revDate").value = state.reviewDate || "";
       render();
-      setSaved("✅ Облако: Synchronisiert", false);
+      setSaved("✅ Cloud: Synchronisiert", false);
     }
   } catch(e) {
     console.error("Cloud Load Error:", e);
     $("warn").style.display = "block";
-    setSaved("❌ Ошибка загрузки облака", true);
+    setSaved("❌ Ladefehler (Cloud)", true);
   }
 }
 
 async function saveDataToCloud() {
   if(isSyncing) return;
   isSyncing = true;
-  setSaved("🔄 Облако: Сохранение...", true);
+  setSaved("🔄 Cloud: Speichern...", true);
   state.savedAt = Date.now();
   try {
     var res = await fetch(JSONBIN_CONFIG.URL + '/' + JSONBIN_CONFIG.BIN_ID, {
@@ -454,11 +454,11 @@ async function saveDataToCloud() {
     if(!res.ok) throw new Error("HTTP " + res.status);
     dirty = false;
     $("warn").style.display = "none";
-    setSaved("✅ Облако: Synchronisiert · " + timeNow(), false);
+    setSaved("✅ Cloud: Synchronisiert · " + timeNow(), false);
   } catch(e) {
     console.error("Cloud Save Error:", e);
     $("warn").style.display = "block";
-    setSaved("❌ Ошибка сохранения!", true);
+    setSaved("❌ Speicherfehler!", true);
   } finally {
     isSyncing = false;
   }
@@ -777,7 +777,7 @@ $("copy").addEventListener("click", function(){
   if(state.reviewer) head += "\nGeprüft von " + state.reviewer + (state.reviewDate ? " am " + state.reviewDate : "");
   var txt = head + "\n\nAKTIV (" + on.length + "):\n" + (on.length ? on.join("\n") : "- keine")
     + "\n\nNICHT MEHR AKTIV (" + off.length + "):\n" + (off.length ? off.join("\n") : "- keine")
-    + "\n\nVOM CHEF ERGÄNZT (" + neu.length + "):\n" + (neu.length ? neu.join("\n") : "- keine");
+    + "\n\nERSTÄNDIG ERGÄNZT (" + neu.length + "):\n" + (neu.length ? neu.join("\n") : "- keine");
   copyText(txt);
 });
 function copyText(txt){
