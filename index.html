@@ -431,7 +431,7 @@ async function loadDataFromCloud() {
       setSaved("✅ Cloud: Synchronisiert", false);
     }
   } catch(e) {
-    console.error("Cloud Load Error:", e);
+    console.error("Cloud-Ladefehler:", e);
     $("warn").style.display = "block";
     setSaved("❌ Ladefehler (Cloud)", true);
   }
@@ -456,7 +456,7 @@ async function saveDataToCloud() {
     $("warn").style.display = "none";
     setSaved("✅ Cloud: Synchronisiert · " + timeNow(), false);
   } catch(e) {
-    console.error("Cloud Save Error:", e);
+    console.error("Cloud-Speicherfehler:", e);
     $("warn").style.display = "block";
     setSaved("❌ Speicherfehler!", true);
   } finally {
@@ -723,7 +723,7 @@ function addClient(){
   state.added.push({ id:id, name:name, domain:dom, url: dom ? "https://" + dom : "", note:note });
   if(note) state.marks[id] = state.marks[id] || { off:false, note:note };
   persist(); openAdd(false); render();
-  toast("„" + name + "“ wurde ergänzt");
+  toast("„" + name + "“ wurde hinzugefügt");
   var el = $("tbody").querySelector('[data-act="' + esc(id) + '"]');
   if(el){
     var tr = el.closest("tr");
@@ -777,7 +777,7 @@ $("copy").addEventListener("click", function(){
   if(state.reviewer) head += "\nGeprüft von " + state.reviewer + (state.reviewDate ? " am " + state.reviewDate : "");
   var txt = head + "\n\nAKTIV (" + on.length + "):\n" + (on.length ? on.join("\n") : "- keine")
     + "\n\nNICHT MEHR AKTIV (" + off.length + "):\n" + (off.length ? off.join("\n") : "- keine")
-    + "\n\nERSTÄNDIG ERGÄNZT (" + neu.length + "):\n" + (neu.length ? neu.join("\n") : "- keine");
+    + "\n\nSELBST ERGÄNZT (" + neu.length + "):\n" + (neu.length ? neu.join("\n") : "- keine");
   copyText(txt);
 });
 function copyText(txt){
