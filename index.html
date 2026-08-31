@@ -25,7 +25,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   padding:40px 20px 150px;-webkit-font-smoothing:antialiased}
 .page{max-width:980px;margin:0 auto}
 
-/* Header */
+/* ---------- Header ---------- */
 header{background:linear-gradient(150deg,var(--navy) 0%,var(--navy-2) 100%);
   color:#fff;border-radius:var(--radius) var(--radius) 0 0;padding:34px 40px 30px;position:relative;overflow:hidden}
 header::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;
@@ -37,8 +37,9 @@ header::after{content:"";position:absolute;inset:auto 0 0 0;height:2px;
 .brand-name{font-size:11.5px;font-weight:600;letter-spacing:2.6px;text-transform:uppercase;color:rgba(255,255,255,.78)}
 h1{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.4px;line-height:1.15;margin-bottom:9px}
 .sub{font-size:14px;color:rgba(255,255,255,.75);max-width:640px}
+.sub b{color:#fff;font-weight:600}
 
-/* Instruction */
+/* ---------- Instruction ---------- */
 .howto{background:var(--gold-soft);border-left:3px solid var(--gold);
   padding:15px 22px;font-size:13.5px;color:#54431d;display:flex;gap:11px;align-items:flex-start}
 .howto b{color:#3b2f13}
@@ -46,7 +47,7 @@ h1{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.4px;
 .howto ol{margin:6px 0 0 18px;padding:0}
 .howto li{margin-bottom:3px}
 
-/* Stats */
+/* ---------- Stats ---------- */
 .stats{display:flex;background:var(--surface);border-left:1px solid var(--line);border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);flex-wrap:wrap}
 .stat{flex:1 1 140px;padding:15px 22px;border-right:1px solid var(--line-2);border-bottom:1px solid transparent}
@@ -57,7 +58,7 @@ h1{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.4px;
 .stat.is-on .stat-v{color:var(--ok)}
 .stat.is-new .stat-v{color:var(--gold-ink)}
 
-/* Toolbar */
+/* ---------- Toolbar ---------- */
 .toolbar{background:var(--surface-2);border-left:1px solid var(--line);border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);padding:13px 22px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .search{position:relative;flex:1 1 210px;min-width:180px}
@@ -71,13 +72,15 @@ h1{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.4px;
   padding:6px 12px;border-radius:7px;cursor:pointer;transition:background .15s,color .15s}
 .chip[aria-selected="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(20,27,45,.14)}
 .chip:hover:not([aria-selected="true"]){color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--navy-2);outline-offset:1px}
 .add-btn{font:inherit;font-size:13.5px;font-weight:600;padding:9px 15px;border-radius:9px;cursor:pointer;
   border:1px dashed var(--navy-2);background:#fff;color:var(--navy-2);display:flex;align-items:center;gap:7px;
   transition:all .14s;white-space:nowrap}
 .add-btn:hover{background:var(--navy);border-color:var(--navy);border-style:solid;color:#fff}
+.add-btn:focus-visible{outline:2px solid var(--navy-2);outline-offset:2px}
 .add-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round}
 
-/* Add form */
+/* ---------- Add form ---------- */
 .addform{display:none;background:#fff;border-left:1px solid var(--line);border-right:1px solid var(--line);
   border-bottom:1px solid var(--line);padding:18px 22px;box-shadow:inset 0 3px 0 var(--navy-2)}
 .addform.open{display:block}
@@ -89,12 +92,13 @@ h1{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.4px;
 .field input{padding:9px 12px;font:inherit;font-size:14px;color:var(--ink);background:#fff;
   border:1px solid var(--line);border-radius:9px;outline:none;transition:border-color .15s,box-shadow .15s}
 .field input:focus{border-color:var(--navy-2);box-shadow:0 0 0 3px rgba(36,51,80,.13)}
+.field input.bad{border-color:var(--danger);box-shadow:0 0 0 3px rgba(180,35,24,.12)}
 .addform .err{display:none;margin-top:11px;font-size:13px;color:var(--danger-ink);
   background:var(--danger-bg);border:1px solid var(--danger-line);border-radius:8px;padding:9px 12px}
 .addform .err.show{display:block}
 .addform .row-btns{display:flex;gap:9px;flex:0 0 auto}
 
-/* Table */
+/* ---------- Table ---------- */
 .table-wrap{background:var(--surface);border:1px solid var(--line);border-top:none;
   border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);overflow:hidden}
 table{width:100%;border-collapse:collapse}
@@ -113,12 +117,14 @@ td.c-nr{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-3);fo
 .c-site .nolink{color:var(--ink-3);font-size:13.5px;font-style:italic}
 td.c-act{text-align:center}
 
+/* badges */
 .badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;
   border-radius:20px;padding:2px 8px;margin-left:8px;vertical-align:middle;white-space:nowrap}
 .b-off{display:none;color:var(--danger);background:#fff;border:1px solid var(--danger-line)}
 .b-added{color:var(--ok);background:var(--ok-bg);border:1px solid var(--ok-line)}
 tr.off .b-off{display:inline-block}
 
+/* row states */
 tr.off{background:var(--danger-bg)!important}
 tr.off td:first-child{position:relative}
 tr.off td:first-child::before{content:"";position:absolute;left:0;top:0;bottom:-1px;width:3px;background:var(--danger)}
@@ -128,15 +134,18 @@ tr.off .c-site a,tr.off .c-site .nolink{color:var(--danger-ink);text-decoration:
 tr.off td.c-nr{color:var(--danger)}
 tr.off .b-added{opacity:.5}
 
+/* action buttons */
 .act{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:#fff;
   color:var(--ink-3);cursor:pointer;display:inline-grid;place-items:center;transition:all .14s;vertical-align:middle}
 .act svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .act:hover{border-color:var(--danger-line);color:var(--danger);background:var(--danger-bg)}
+.act:focus-visible{outline:2px solid var(--navy-2);outline-offset:2px}
 tr.off .act{border-color:var(--danger-line);color:var(--danger);background:#fff}
 tr.off .act:hover{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-line)}
 .act-del{margin-left:6px;border-style:dashed}
 .act-del:hover{border-style:solid}
 
+/* note row */
 tr.note-row td{padding:0 20px 12px;height:auto;border-bottom:1px solid var(--line-2);
   background:var(--danger-bg);position:relative}
 tr.note-row td::before{content:"";position:absolute;left:0;top:0;bottom:-1px;width:3px;background:var(--danger)}
@@ -147,16 +156,18 @@ tr.note-row td::before{content:"";position:absolute;left:0;top:0;bottom:-1px;wid
 
 .empty{display:none;padding:52px 20px;text-align:center;color:var(--ink-3);font-size:14px}
 
+/* ---------- Sign-off ---------- */
 .signoff{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   padding:18px 22px;display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;box-shadow:var(--shadow)}
 .signoff .field{flex:1 1 230px}
 .signoff .who{font-size:12.5px;color:var(--ink-3);flex:1 1 100%}
 
+/* ---------- Action bar ---------- */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,255,255,.94);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);
   padding:12px 20px;display:flex;justify-content:center}
 .bar-in{width:100%;max-width:980px;display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.saved{font-size:12.5px;color:var(--ink-3);margin-right:auto;display:flex;align-items:center;gap:7px;min-width:180px}
+.saved{font-size:12.5px;color:var(--ink-3);margin-right:auto;display:flex;align-items:center;gap:7px;min-width:200px}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
 .btn{font:inherit;font-size:13.5px;font-weight:600;padding:10px 16px;border-radius:9px;cursor:pointer;
   border:1px solid var(--line);background:#fff;color:var(--ink-2);transition:all .14s;white-space:nowrap}
@@ -165,13 +176,35 @@ tr.note-row td::before{content:"";position:absolute;left:0;top:0;bottom:-1px;wid
 .btn-primary:hover{background:var(--navy-2);border-color:var(--navy-2);color:#fff}
 .btn-ghost{background:transparent;border-color:transparent;color:var(--ink-3)}
 .btn-ghost:hover{color:var(--danger);border-color:var(--danger-line);background:var(--danger-bg)}
+.btn:focus-visible{outline:2px solid var(--navy-2);outline-offset:2px}
+.btn[disabled]{opacity:.45;cursor:default}
 
 .toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,14px);z-index:30;max-width:min(92vw,540px);
   background:var(--navy);color:#fff;font-size:13.5px;padding:12px 20px;border-radius:10px;text-align:center;
   box-shadow:0 10px 30px -8px rgba(20,27,45,.5);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
+.warn{display:none;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);font-size:13px;
+  padding:12px 18px;border-radius:10px;margin-top:14px}
 footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-height:1.7}
 
+/* ---------- Print ---------- */
+@media print{
+  body{background:#fff;padding:0;font-size:10.5pt}
+  .toolbar,.bar,.toast,.warn,.act,th.c-act,td.c-act,.howto,footer,.addform,.add-btn{display:none!important}
+  header{border-radius:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:22px 24px}
+  h1{font-size:22pt}
+  .table-wrap,.signoff{box-shadow:none;border-radius:0}
+  .signoff{border:1px solid #ccc;margin-top:14px}
+  tr.off,.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  tbody td{height:auto;padding:6px 12px}
+  tbody tr.row:hover{background:none}
+  tr.note-row td{padding:0 12px 8px}
+  .note{border:none;padding:0;background:none;color:var(--danger-ink);font-style:italic}
+  tr.note-row.empty-note{display:none!important}
+  thead{display:table-header-group}
+  tr{break-inside:avoid}
+  .signoff{break-inside:avoid}
+}
 @media (max-width:700px){
   body{padding:14px 8px 180px}
   header{padding:26px 20px 22px}
@@ -192,18 +225,19 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
       <div class="mark">A8</div>
       <div class="brand-name">ARA 8 · Webagentur</div>
     </div>
-    <h1>SEO Kundenliste (Live Synchronisiert)</h1>
-    <p class="sub">Dynamische Echtzeit-Übersicht aller SEO-Kunden für das gesamte Team.</p>
+    <h1>Kundenliste SEO</h1>
+    <p class="sub">Geprüfte Gesamtübersicht aller SEO-Kunden — ohne Duplikate, mit Direktlink zu jeder Website.
+      Stand <b id="hStand">—</b>.</p>
   </header>
 
   <div class="howto">
     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.2M12 7.4v.5"/></svg>
     <div>
-      <b>So funktioniert die Live-Synchronisation:</b>
+      <b>Und so geht es:</b>
       <ol>
-        <li>Kunden, die <b>inaktiv</b> sind, rechts mit dem ✕ markieren (Zeile wird rot). Optional Notiz hinzufügen.</li>
-        <li>Fehlende Kunden oben über <b>„Kunde hinzufügen“</b> eintragen.</li>
-        <li>Klicken Sie unten auf <b>„Änderungen speichern“</b>, um die Daten direkt für das gesamte Team zu aktualisieren.</li>
+        <li>Kunden, mit denen wir <b>nicht mehr arbeiten</b>, rechts mit dem ✕ markieren — die Zeile wird rot und durchgestrichen. Auf Wunsch eine kurze Notiz ergänzen.</li>
+        <li>Fehlt ein Kunde? Oben auf <b>„Kunde hinzufügen“</b> klicken und ihn eintragen.</li>
+        <li>Alle Änderungen werden **automatisch mit JSONBin.io** synchronisiert.</li>
       </ol>
     </div>
   </div>
@@ -212,7 +246,7 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
     <div class="stat"><div class="stat-l">Kunden gesamt</div><div class="stat-v" id="sTotal">0</div></div>
     <div class="stat is-on"><div class="stat-l">Aktiv</div><div class="stat-v" id="sOn">0</div></div>
     <div class="stat is-off"><div class="stat-l">Gestrichen</div><div class="stat-v" id="sOff">0</div></div>
-    <div class="stat is-new"><div class="stat-l">Hinzugefügt</div><div class="stat-v" id="sAdd">0</div></div>
+    <div class="stat is-new"><div class="stat-l">Selbst ergänzt</div><div class="stat-v" id="sAdd">0</div></div>
   </div>
 
   <div class="toolbar">
@@ -232,8 +266,8 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
   </div>
 
   <div class="addform" id="addform">
-    <h2>Neuen Kunden eintragen</h2>
-    <p class="hint">Der Name ist ein Pflichtfeld. Die Website erleichtert die Zuordnung.</p>
+    <h2>Fehlenden Kunden eintragen</h2>
+    <p class="hint">Nur der Name ist Pflicht. Die Website hilft uns bei der Zuordnung — falls sie nicht bekannt ist, einfach frei lassen.</p>
     <div class="fields">
       <div class="field" style="flex:1 1 240px">
         <label for="nName">Kunde / Firma</label>
@@ -245,7 +279,7 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
       </div>
       <div class="field" style="flex:1 1 200px">
         <label for="nNote">Notiz (optional)</label>
-        <input type="text" id="nNote" maxlength="200" placeholder="z. B. seit 08/2026 dabei" autocomplete="off">
+        <input type="text" id="nNote" maxlength="200" placeholder="z. B. seit 05/2026 dabei" autocomplete="off">
       </div>
       <div class="row-btns">
         <button class="btn" type="button" id="addCancel">Abbrechen</button>
@@ -261,17 +295,17 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
         <th class="c-nr">Nr.</th>
         <th>Kunde</th>
         <th class="c-site-h">Website</th>
-        <th class="c-act">Status</th>
+        <th class="c-act">Nicht mehr</th>
       </tr></thead>
       <tbody id="tbody"></tbody>
     </table>
-    <div class="empty" id="empty">Keine Einträge in dieser Ansicht vorhanden.</div>
+    <div class="empty" id="empty">Keine Einträge in dieser Ansicht.</div>
   </div>
 
   <div class="signoff">
     <div class="field">
       <label for="revName">Geprüft von</label>
-      <input type="text" id="revName" maxlength="60" placeholder="Ihr Name" autocomplete="off">
+      <input type="text" id="revName" maxlength="60" placeholder="Name" autocomplete="off">
     </div>
     <div class="field">
       <label for="revDate">Geprüft am</label>
@@ -280,17 +314,22 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
     <div class="who" id="whoLine"></div>
   </div>
 
+  <div class="warn" id="warn">
+    <b>Fehler:</b> Die Daten konnten nicht mit dem Cloud-Speicher (JSONBin.io) synchronisiert werden.
+  </div>
+
   <footer>
-    ARA 8 Webagentur · Live-Datenbank für SEO-Kunden<br>
-    Alle Änderungen werden zentral für das gesamte Team synchronisiert.
+    ARA 8 Webagentur · Interne Kundenübersicht<br>
+    Alle Eingaben werden live mit JSONBin.io synchronisiert.
   </footer>
 </div>
 
 <div class="bar"><div class="bar-in">
-  <div class="saved"><span class="dot" id="dot"></span><span id="savedTxt">Verbindung wird aufgebaut...</span></div>
+  <div class="saved"><span class="dot" id="dot"></span><span id="savedTxt">Bereit</span></div>
   <button class="btn btn-ghost" type="button" id="reset">Zurücksetzen</button>
   <button class="btn" type="button" id="print">Drucken / PDF</button>
-  <button class="btn btn-primary" type="button" id="save">Änderungen speichern</button>
+  <button class="btn" type="button" id="copy">Bericht kopieren</button>
+  <button class="btn btn-primary" type="button" id="save">Сохранить в облако</button>
 </div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -298,10 +337,12 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
 (function(){
 "use strict";
 
-// --- HOCHAKTUELLE JSONBIN.IO CONFIG (UPDATED) ---
-var BIN_ID = "6a9585a3f5f4af5e29580059"; 
-var API_KEY = "$2a$10$CA5.RPL30vlN2xE4eKKZk.CSnuuiFZ/tDbG/ovANcneZRFW19QUSq"; 
-// ------------------------------------------------
+/* ---------- JSONBin.io Config ---------- */
+var JSONBIN_CONFIG = {
+  BIN_ID: '6a9585a3f5f4af5e29580059',
+  API_KEY: '$2a$10$2naxqHEGTdV5DWq7G3m.RuVyva0FYJWVQFTzQ9vzOJWNbV62.PMvq',
+  URL: 'https://api.jsonbin.io/v3/b'
+};
 
 var CLIENTS = [
   ["Abbruchfuchs","abbruchfuchs.ch","https://abbruchfuchs.ch"],
@@ -353,6 +394,7 @@ var CLIENTS = [
   ["Züri Umzug 24","zueriumzug24.ch","https://zueriumzug24.ch"],
   ["Zulassungscenter Muc","zulassungscenter-muc.de","https://zulassungscenter-muc.de"]
 ];
+var STAND = "30.08.2026";
 
 var ICON_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 var ICON_UNDO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12a8.5 8.5 0 1 0 2.8-6.3"/><path d="M3 4.2v5h5"/></svg>';
@@ -360,69 +402,87 @@ var ICON_TRASH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16
 
 function $(id){ return document.getElementById(id); }
 
-var state = { marks:{}, added:[], reviewer:"", reviewDate:"" };
-var filter = "all", query = "", dirty = false;
+var state = { docId:"", savedAt:0, marks:{}, added:[], reviewer:"", reviewDate:"" };
+var filter = "all", query = "", dirty = false, isSyncing = false;
 
-function loadFromCloud(){
-  setSaved("Datenbank wird geladen...", "var(--gold)");
-  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', {
-    headers: { 'X-Access-Key': API_KEY }
-  })
-  .then(function(res){
-    if(!res.ok) throw new Error("HTTP Status " + res.status);
-    return res.json();
-  })
-  .then(function(data){
-    if(data.record){
-      state.marks = data.record.marks || {};
-      state.added = data.record.added || [];
-      state.reviewer = data.record.reviewer || "";
-      state.reviewDate = data.record.reviewDate || "";
-      $("revName").value = state.reviewer;
-      $("revDate").value = state.reviewDate;
+function uid(){
+  return "d" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+}
+
+/* ---------- Cloud Methods (JSONBin.io) ---------- */
+async function loadDataFromCloud() {
+  setSaved("🔄 Облако: Загрузка...", true);
+  try {
+    var res = await fetch(JSONBIN_CONFIG.URL + '/' + JSONBIN_CONFIG.BIN_ID + '/latest', {
+      method: 'GET',
+      headers: {
+        'X-Master-Key': JSONBIN_CONFIG.API_KEY
+      }
+    });
+    if(!res.ok) throw new Error("HTTP " + res.status);
+    var data = await res.json();
+    if(data && data.record) {
+      state = data.record;
+      if(!state.marks) state.marks = {};
+      if(!state.added) state.added = [];
+      $("revName").value = state.reviewer || "";
+      $("revDate").value = state.reviewDate || "";
+      render();
+      setSaved("✅ Облако: Synchronisiert", false);
     }
-    dirty = false;
-    setSaved("Mit Datenbank synchronisiert", "var(--ok)");
-    render();
-  })
-  .catch(function(err){
-    console.error("Fehler beim Laden:", err);
-    setSaved("Fehler beim Laden (" + err.message + ")", "var(--danger)");
-    toast("Fehler beim Abrufen der Live-Daten: " + err.message);
-  });
+  } catch(e) {
+    console.error("Cloud Load Error:", e);
+    $("warn").style.display = "block";
+    setSaved("❌ Ошибка загрузки облака", true);
+  }
 }
 
-function saveToCloud(){
-  setSaved("Wird in Datenbank gespeichert...", "var(--gold)");
-  fetch('https://api.jsonbin.io/v3/b/' + BIN_ID, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Access-Key': API_KEY
-    },
-    body: JSON.stringify(state)
-  })
-  .then(function(res){
-    if(!res.ok) throw new Error("HTTP Status " + res.status);
-    return res.json();
-  })
-  .then(function(data){
+async function saveDataToCloud() {
+  if(isSyncing) return;
+  isSyncing = true;
+  setSaved("🔄 Облако: Сохранение...", true);
+  state.savedAt = Date.now();
+  try {
+    var res = await fetch(JSONBIN_CONFIG.URL + '/' + JSONBIN_CONFIG.BIN_ID, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_CONFIG.API_KEY
+      },
+      body: JSON.stringify(state)
+    });
+    if(!res.ok) throw new Error("HTTP " + res.status);
     dirty = false;
-    setSaved("Erfolgreich für alle gespeichert!", "var(--ok)");
-    toast("Alle Änderungen wurden erfolgreich im Team-Netzwerk gespeichert!");
-  })
-  .catch(function(err){
-    console.error("Speicherfehler:", err);
-    setSaved("Speicherfehler (" + err.message + ")", "var(--danger)");
-    toast("Fehler beim Speichern: " + err.message);
-  });
+    $("warn").style.display = "none";
+    setSaved("✅ Облако: Synchronisiert · " + timeNow(), false);
+  } catch(e) {
+    console.error("Cloud Save Error:", e);
+    $("warn").style.display = "block";
+    setSaved("❌ Ошибка сохранения!", true);
+  } finally {
+    isSyncing = false;
+  }
 }
 
-function setSaved(txt, color){
+function persist(){
+  dirty = true;
+  saveDataToCloud();
+}
+
+function timeNow(){
+  var d = new Date();
+  return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
+}
+function today(){
+  var d = new Date();
+  return ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth() + 1)).slice(-2) + "." + d.getFullYear();
+}
+function setSaved(txt, bad){
   $("savedTxt").textContent = txt;
-  $("dot").style.background = color;
+  $("dot").style.background = bad ? "var(--gold)" : (dirty ? "var(--gold)" : "var(--ok)");
 }
 
+/* ---------- data ---------- */
 function allRows(){
   var out = [];
   for(var i = 0; i < CLIENTS.length; i++){
@@ -433,25 +493,29 @@ function allRows(){
     var a = state.added[j];
     out.push({ id: a.id, name: a.name, domain: a.domain || "", url: a.url || "", added: true });
   }
-  out.sort(function(x, y){ return x.name.localeCompare(y.name, "de"); });
+  out.sort(function(x, y){ return sortKey(x.name).localeCompare(sortKey(y.name), "de"); });
   return out;
 }
-
+function sortKey(s){ return String(s).toLowerCase(); }
 function slug(s){
   return String(s).toLowerCase().replace(/[äÄ]/g,"ae").replace(/[öÖ]/g,"oe").replace(/[üÜ]/g,"ue")
     .replace(/ß/g,"ss").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,50);
 }
-
 function normDomain(s){
   return String(s || "").trim().toLowerCase()
     .replace(/^https?:\/\//,"").replace(/^www\./,"").replace(/\/.*$/,"").replace(/\s+/g,"");
 }
-
 function isOff(id){ return !!(state.marks[id] && state.marks[id].off); }
 function noteOf(id){ return (state.marks[id] && state.marks[id].note) || ""; }
 
+/* ---------- render ---------- */
 function render(){
-  var tb = $("tbody");
+  var tb = $("tbody"), focusNote = null, focusAct = null, ae = document.activeElement;
+  if(ae && ae.getAttribute){
+    if(ae.getAttribute("data-note") != null) focusNote = ae.getAttribute("data-note");
+    if(ae.getAttribute("data-act") != null) focusAct = ae.getAttribute("data-act");
+  }
+
   tb.textContent = "";
   var q = query.trim().toLowerCase(), rows = allRows(), shown = 0;
 
@@ -477,7 +541,7 @@ function render(){
     nm.textContent = r.name;
     td2.appendChild(nm);
     if(r.added) td2.appendChild(badge("b-added", "ergänzt"));
-    td2.appendChild(badge("b-off", "inaktiv"));
+    td2.appendChild(badge("b-off", "nicht mehr aktiv"));
     tr.appendChild(td2);
 
     var td3 = document.createElement("td");
@@ -500,14 +564,18 @@ function render(){
     var btn = document.createElement("button");
     btn.className = "act"; btn.type = "button";
     btn.setAttribute("data-act", r.id);
-    btn.title = off ? "Wieder aktivieren" : "Als inaktiv markieren";
+    btn.setAttribute("aria-pressed", off ? "true" : "false");
+    var lbl = off ? "Markierung aufheben" : "Als nicht mehr aktiv markieren";
+    btn.title = lbl;
+    btn.setAttribute("aria-label", lbl + ": " + r.name);
     btn.innerHTML = off ? ICON_UNDO : ICON_X;
     td4.appendChild(btn);
     if(r.added){
       var del = document.createElement("button");
       del.className = "act act-del"; del.type = "button";
       del.setAttribute("data-del", r.id);
-      del.title = "Eintrag dauerhaft löschen";
+      del.title = "Diesen selbst ergänzten Eintrag löschen";
+      del.setAttribute("aria-label", "Eintrag löschen: " + r.name);
       del.innerHTML = ICON_TRASH;
       td4.appendChild(del);
     }
@@ -521,23 +589,32 @@ function render(){
       ntd.colSpan = 4;
       var inp = document.createElement("input");
       inp.className = "note"; inp.type = "text"; inp.maxLength = 200;
-      inp.placeholder = "Notiz (optional) — z. B. Vertrag gekündigt 08/2026";
+      inp.placeholder = "Notiz (optional) — z. B. Vertrag gekündigt 07/2026";
       inp.value = noteOf(r.id);
       inp.setAttribute("data-note", r.id);
+      inp.setAttribute("aria-label", "Notiz zu " + r.name);
       ntd.appendChild(inp); nr.appendChild(ntd); tb.appendChild(nr);
     }
   }
 
   $("empty").style.display = shown ? "none" : "block";
   stats();
-}
 
+  if(focusNote){
+    var bn = tb.querySelector('[data-note="' + esc(focusNote) + '"]');
+    if(bn){ bn.focus(); try{ bn.setSelectionRange(bn.value.length, bn.value.length); }catch(e){} }
+  }else if(focusAct){
+    var ba = tb.querySelector('[data-act="' + esc(focusAct) + '"]');
+    if(ba) ba.focus();
+  }
+}
 function badge(cls, txt){
   var b = document.createElement("span");
   b.className = "badge " + cls;
   b.textContent = txt;
   return b;
 }
+function esc(s){ return String(s).replace(/["\\]/g, "\\$&"); }
 
 function stats(){
   var rows = allRows(), off = 0;
@@ -546,22 +623,25 @@ function stats(){
   $("sOff").textContent = String(off);
   $("sOn").textContent = String(rows.length - off);
   $("sAdd").textContent = String(state.added.length);
+  $("hStand").textContent = STAND;
   var w = "";
   if(state.reviewer) w = "Zuletzt bearbeitet von " + state.reviewer + (state.reviewDate ? " am " + state.reviewDate : "") + ".";
   $("whoLine").textContent = w;
 }
 
+/* ---------- events ---------- */
 $("tbody").addEventListener("click", function(e){
   var t = e.target;
   var del = t.closest ? t.closest("[data-del]") : null;
   if(del){
     var did = del.getAttribute("data-del");
-    if(!window.confirm("Möchten Sie diesen hinzugefügten Kunden wirklich löschen?")) return;
+    var row = null;
+    for(var k = 0; k < state.added.length; k++) if(state.added[k].id === did) row = state.added[k];
+    if(row && !window.confirm("Eintrag „" + row.name + "“ wirklich löschen?")) return;
     state.added = state.added.filter(function(a){ return a.id !== did; });
     delete state.marks[did];
-    dirty = true;
-    setSaved("Ungespeicherte Änderungen", "var(--gold)");
-    render();
+    persist(); render();
+    toast("Eintrag gelöscht");
     return;
   }
   var b = t.closest ? t.closest("[data-act]") : null;
@@ -569,55 +649,102 @@ $("tbody").addEventListener("click", function(e){
   var id = b.getAttribute("data-act");
   if(!state.marks[id]) state.marks[id] = { off:false, note:"" };
   state.marks[id].off = !state.marks[id].off;
-  dirty = true;
-  setSaved("Ungespeicherte Änderungen", "var(--gold)");
-  render();
+  var nowOff = state.marks[id].off;
+  if(!nowOff && !state.marks[id].note) delete state.marks[id];
+  persist(); render();
+  if(nowOff && filter === "on") toast("Kunde gestrichen — jetzt unter „Gestrichen“ zu sehen");
 });
 
+var noteTimer = null;
 $("tbody").addEventListener("input", function(e){
   var t = e.target;
   if(!t || !t.getAttribute || t.getAttribute("data-note") == null) return;
   var id = t.getAttribute("data-note");
   if(!state.marks[id]) state.marks[id] = { off:true, note:"" };
   state.marks[id].note = t.value;
-  dirty = true;
-  setSaved("Ungespeicherte Änderungen", "var(--gold)");
+  var row = t.parentNode && t.parentNode.parentNode;
+  if(row && row.className.indexOf("note-row") > -1){
+    row.className = t.value ? "note-row" : "note-row empty-note";
+  }
+  if(noteTimer) clearTimeout(noteTimer);
+  noteTimer = setTimeout(function(){ persist(); }, 800);
 });
 
+/* ---------- add a client ---------- */
 function openAdd(open){
   $("addform").className = open ? "addform open" : "addform";
+  $("addToggle").setAttribute("aria-expanded", open ? "true" : "false");
   if(open){ $("nName").focus(); }
-  else{ showErr(""); $("nName").value = ""; $("nSite").value = ""; $("nNote").value = ""; }
+  else{ showErr(""); $("nName").value = ""; $("nSite").value = ""; $("nNote").value = ""; $("nName").className = ""; }
 }
 function showErr(msg){
   var e = $("addErr");
   e.textContent = msg;
   e.className = msg ? "err show" : "err";
 }
-$("addToggle").addEventListener("click", function(){ openAdd($("addform").className.indexOf("open") < 0); });
+$("addToggle").addEventListener("click", function(){
+  openAdd($("addform").className.indexOf("open") < 0);
+});
 $("addCancel").addEventListener("click", function(){ openAdd(false); });
 $("addSave").addEventListener("click", addClient);
+$("nName").addEventListener("keydown", function(e){ if(e.key === "Enter") addClient(); });
+$("nSite").addEventListener("keydown", function(e){ if(e.key === "Enter") addClient(); });
+$("nNote").addEventListener("keydown", function(e){ if(e.key === "Enter") addClient(); });
 
 function addClient(){
   var name = $("nName").value.trim();
   var dom = normDomain($("nSite").value);
   var note = $("nNote").value.trim();
-  if(!name){ showErr("Bitte tragen Sie den Namen des Kunden ein."); return; }
-
-  var id = "neu:" + (slug(name) || Date.now());
+  $("nName").className = "";
+  if(!name){
+    $("nName").className = "bad"; $("nName").focus();
+    showErr("Bitte den Namen des Kunden eintragen.");
+    return;
+  }
+  if(dom && !/^[a-z0-9\u00e4\u00f6\u00fc-]+(\.[a-z0-9\u00e4\u00f6\u00fc-]+)+$/.test(dom)){
+    showErr("„" + $("nSite").value.trim() + "“ sieht nicht wie eine Website aus. Beispiel: muster-umzuege.de");
+    return;
+  }
+  var rows = allRows();
+  for(var i = 0; i < rows.length; i++){
+    var r = rows[i];
+    if(dom && r.domain && r.domain.toLowerCase() === dom){
+      showErr("Diese Website steht bereits in der Liste — Nr. " + (i + 1) + ": " + r.name + ".");
+      return;
+    }
+    if(r.name.toLowerCase() === name.toLowerCase()){
+      showErr("„" + r.name + "“ steht bereits in der Liste (Nr. " + (i + 1) + ").");
+      return;
+    }
+  }
+  var id = "neu:" + (slug(name) || uid());
+  var n = 2, base = id;
+  while(state.added.some(function(a){ return a.id === id; })){ id = base + "-" + n; n++; }
   state.added.push({ id:id, name:name, domain:dom, url: dom ? "https://" + dom : "", note:note });
-  if(note) state.marks[id] = { off:false, note:note };
-
-  dirty = true;
-  setSaved("Ungespeicherte Änderungen", "var(--gold)");
-  openAdd(false);
-  render();
-  toast("Kunde „" + name + "“ hinzugefügt");
+  if(note) state.marks[id] = state.marks[id] || { off:false, note:note };
+  persist(); openAdd(false); render();
+  toast("„" + name + "“ wurde ergänzt");
+  var el = $("tbody").querySelector('[data-act="' + esc(id) + '"]');
+  if(el){
+    var tr = el.closest("tr");
+    if(tr && tr.scrollIntoView) tr.scrollIntoView({ block:"center" });
+    tr.style.transition = "background .5s";
+    tr.style.background = "var(--ok-bg)";
+    setTimeout(function(){ tr.style.background = ""; }, 1400);
+  }
 }
 
-$("revName").addEventListener("input", function(e){ state.reviewer = e.target.value.trim(); dirty = true; setSaved("Ungespeicherte Änderungen", "var(--gold)"); stats(); });
-$("revDate").addEventListener("input", function(e){ state.reviewDate = e.target.value.trim(); dirty = true; setSaved("Ungespeicherte Änderungen", "var(--gold)"); stats(); });
+/* ---------- sign-off ---------- */
+$("revName").addEventListener("input", function(e){
+  state.reviewer = e.target.value.trim();
+  if(state.reviewer && !state.reviewDate){ state.reviewDate = today(); $("revDate").value = state.reviewDate; }
+  persist(); stats();
+});
+$("revDate").addEventListener("input", function(e){
+  state.reviewDate = e.target.value.trim(); persist(); stats();
+});
 
+/* ---------- filters & search ---------- */
 $("q").addEventListener("input", function(e){ query = e.target.value; render(); });
 var chips = document.querySelectorAll(".chip");
 Array.prototype.forEach.call(chips, function(chip){
@@ -629,16 +756,51 @@ Array.prototype.forEach.call(chips, function(chip){
   });
 });
 
+/* ---------- bar actions ---------- */
 $("reset").addEventListener("click", function(){
-  if(!window.confirm("Möchten Sie alle lokalen Markierungen wirklich zurücksetzen?")) return;
+  if(!window.confirm("Alle Markierungen, Notizen und selbst ergänzten Kunden zurücksetzen?")) return;
   state.marks = {}; state.added = [];
-  dirty = true;
-  setSaved("Ungespeicherte Änderungen", "var(--gold)");
-  render();
+  persist(); render();
+  toast("Alles zurückgesetzt");
 });
 $("print").addEventListener("click", function(){ window.print(); });
 
-$("save").addEventListener("click", saveToCloud);
+$("copy").addEventListener("click", function(){
+  var rows = allRows(), on = [], off = [], neu = [];
+  for(var i = 0; i < rows.length; i++){
+    var r = rows[i], line = "- " + r.name + (r.domain ? " (" + r.domain + ")" : "");
+    if(r.added) neu.push(line + (noteOf(r.id) ? " — " + noteOf(r.id) : ""));
+    if(isOff(r.id)) off.push(line + (noteOf(r.id) ? " — " + noteOf(r.id) : ""));
+    else on.push(line);
+  }
+  var head = "KUNDENLISTE ARA 8 — Stand " + STAND;
+  if(state.reviewer) head += "\nGeprüft von " + state.reviewer + (state.reviewDate ? " am " + state.reviewDate : "");
+  var txt = head + "\n\nAKTIV (" + on.length + "):\n" + (on.length ? on.join("\n") : "- keine")
+    + "\n\nNICHT MEHR AKTIV (" + off.length + "):\n" + (off.length ? off.join("\n") : "- keine")
+    + "\n\nVOM CHEF ERGÄNZT (" + neu.length + "):\n" + (neu.length ? neu.join("\n") : "- keine");
+  copyText(txt);
+});
+function copyText(txt){
+  var done = function(){ toast("Bericht in die Zwischenablage kopiert"); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(done, function(){ fallbackCopy(txt, done); });
+  }else{ fallbackCopy(txt, done); }
+}
+function fallbackCopy(txt, done){
+  var ta = document.createElement("textarea");
+  ta.value = txt; ta.setAttribute("readonly","readonly");
+  ta.style.position = "fixed"; ta.style.top = "0"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  var ok = false;
+  try{ ok = document.execCommand("copy"); }catch(e){ ok = false; }
+  document.body.removeChild(ta);
+  if(ok) done(); else toast("Kopieren nicht möglich — bitte Text manuell markieren");
+}
+
+$("save").addEventListener("click", function(){ saveDataToCloud(); });
+document.addEventListener("keydown", function(e){
+  if((e.ctrlKey || e.metaKey) && String(e.key).toLowerCase() === "s"){ e.preventDefault(); saveDataToCloud(); }
+});
 
 var toastT = null;
 function toast(msg){
@@ -648,7 +810,23 @@ function toast(msg){
   toastT = setTimeout(function(){ t.classList.remove("show"); }, 3200);
 }
 
-loadFromCloud();
+window.addEventListener("beforeunload", function(e){
+  if(!dirty) return;
+  e.preventDefault();
+  e.returnValue = "";
+  return "";
+});
+
+function padForBar(){
+  var b = document.querySelector(".bar");
+  if(b) document.body.style.paddingBottom = (b.offsetHeight + 34) + "px";
+}
+window.addEventListener("resize", padForBar);
+
+/* ---------- Boot ---------- */
+loadDataFromCloud();
+padForBar();
+
 })();
 </script>
 </body>
