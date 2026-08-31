@@ -298,7 +298,6 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
   <div class="saved"><span class="dot" id="dot"></span><span id="savedTxt">Verbindung wird aufgebaut...</span></div>
   <button class="btn btn-ghost" type="button" id="reset">Zurücksetzen</button>
   <button class="btn" type="button" id="print">Drucken / PDF</button>
-  <button class="btn" type="button" id="copy">Bericht kopieren</button>
   <button class="btn btn-primary" type="button" id="save">Änderungen speichern</button>
 </div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -307,12 +306,10 @@ footer{text-align:center;margin-top:20px;font-size:12px;color:var(--ink-3);line-
 (function(){
 "use strict";
 
-// --- JSONBIN DYNAMISCHE DATENBANK CONFIG ---
+// --- CONFIG JSONBIN.IO ---
 var BIN_ID = "66a957c97da38895dfe264d7f"; 
-// Настоящий Master Key со скриншота #2 (дает полный доступ на чтение и запись):
-var MASTER_KEY = "$2a$10$2naxqHEGTdV5OWq7G3m.RuVyva0FYJWVQFTzQ9vzOJWNbv62.PAvq"; 
-// ------------------------------------------
-
+var API_KEY = "$2a$10$UdfqdVnuYUdUZvpSf8lFrultY57Z.ApGMrjUSBsI7t4.Xzx.CBPpC"; 
+// -------------------------
 
 var CLIENTS = [
   ["Abbruchfuchs","abbruchfuchs.ch","https://abbruchfuchs.ch"],
@@ -377,10 +374,13 @@ var filter = "all", query = "", dirty = false;
 function loadFromCloud(){
   setSaved("Datenbank wird geladen...", "var(--gold)");
   fetch('https://api.jsonbin.io/v3/b/' + BIN_ID + '/latest', {
-    headers: { 'X-Master-Key': MASTER_KEY }
+    headers: { 'X-Access-Key': API_KEY }
   })
-  .then(res => res.json())
-  .then(data => {
+  .then(function(res){
+    if(!res.ok) throw new Error("HTTP Status " + res.status);
+    return res.json();
+  })
+  .then(function(data){
     if(data.record){
       state.marks = data.record.marks || {};
       state.added = data.record.added || [];
@@ -393,9 +393,10 @@ function loadFromCloud(){
     setSaved("Mit Datenbank synchronisiert", "var(--ok)");
     render();
   })
-  .catch(err => {
-    setSaved("Fehler beim Laden", "var(--danger)");
-    toast("Fehler beim Abrufen der Live-Daten aus der Datenbank.");
+  .catch(function(err){
+    console.error("Fehler beim Laden:", err);
+    setSaved("Fehler beim Laden (" + err.message + ")", "var(--danger)");
+    toast("Fehler beim Abrufen der Live-Daten: " + err.message);
   });
 }
 
@@ -405,19 +406,23 @@ function saveToCloud(){
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'X-Master-Key': MASTER_KEY
+      'X-Access-Key': API_KEY
     },
     body: JSON.stringify(state)
   })
-  .then(res => res.json())
-  .then(data => {
+  .then(function(res){
+    if(!res.ok) throw new Error("HTTP Status " + res.status);
+    return res.json();
+  })
+  .then(function(data){
     dirty = false;
     setSaved("Erfolgreich für alle gespeichert!", "var(--ok)");
     toast("Alle Änderungen wurden erfolgreich im Team-Netzwerk gespeichert!");
   })
-  .catch(err => {
-    setSaved("Speicherfehler", "var(--danger)");
-    toast("Fehler beim Speichern in der Datenbank.");
+  .catch(function(err){
+    console.error("Speicherfehler:", err);
+    setSaved("Speicherfehler (" + err.message + ")", "var(--danger)");
+    toast("Fehler beim Speichern: " + err.message + ". Bitte Access Key Prüfen.");
   });
 }
 
